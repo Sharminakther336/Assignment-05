@@ -2,6 +2,8 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Banner from "./components/Banner";
 import Technologies from "./components/Technologies";
+import StackSidebar from "./components/StackSidebar";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -20,17 +22,31 @@ function App() {
       {/* Banner */}
       <Banner />
 
-      {/* Technologies Section */}
-      <Technologies onAdd={handleAdd} />
+      {/* Technologies + Sidebar */}
+      <div className="max-w-6xl mx-auto px-5">
+        <div className="flex flex-col lg:flex-row gap-6">
+          
+          {/* Technologies */}
+          <div className="flex-1">
+            <Technologies onAdd={handleAdd} />
+          </div>
 
-      {/* Toastify Container */}
-      <ToastContainer position="bottom-right" autoClose={2000} />
+          {/* Sidebar */}
+          <StackSidebar />
+
+        </div>
+      </div>
+
+      {/* Toastify */}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+      />
     </div>
   );
 }
 
 export default App;
-
 
 
 
