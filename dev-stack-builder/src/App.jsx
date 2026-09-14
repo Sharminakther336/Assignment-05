@@ -5,49 +5,43 @@ import Technologies from "./components/Technologies";
 import StackSidebar from "./components/StackSidebar";
 import Footer from "./components/Footer";
 
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [stack, setStack] = useState([]);
 
   const handleAdd = (tech) => {
-    setStack([...stack, tech]);
+    
+    
+    if (!stack.find((t) => t.id === tech.id)) {
+      setStack([...stack, tech]);
+      toast.success(`${tech.name} added to stack!`);
+    }
+  };
+
+  const handleRemove = (id) => {
+    const updated = stack.filter((t) => t.id !== id);
+    setStack(updated);
+    toast.info("Removed from stack");
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
-
-      {/* Navbar */}
       <Navbar />
-
-      {/* Banner */}
       <Banner />
 
-      {/* Technologies + Sidebar */}
       <div className="max-w-6xl mx-auto px-5">
         <div className="flex flex-col lg:flex-row gap-6">
-
-          {/* Technologies */}
           <div className="flex-1">
-            <Technologies onAdd={handleAdd} />
+            <Technologies onAdd={handleAdd} stack={stack} />
           </div>
-
-          {/* Sidebar */}
-          <StackSidebar />
-
+          <StackSidebar stack={stack} onRemove={handleRemove} />
         </div>
       </div>
 
-      {/* Footer */}
       <Footer />
-
-      {/* Toastify */}
-      <ToastContainer
-        position="bottom-right"
-        autoClose={2000}
-      />
-
+      <ToastContainer position="bottom-right" autoClose={2000} />
     </div>
   );
 }
