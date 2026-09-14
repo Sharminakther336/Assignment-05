@@ -2,28 +2,45 @@ import { toast } from "react-toastify";
 import { FaStar } from "react-icons/fa";
 
 const TechnologyCard = ({ tech, onAdd, stack = [] }) => {
-  const { id, name, description, category, level, badge, logo, rating } = tech;
+  const {
+    id,
+    name,
+    description,
+    category,
+    level,
+    badge,
+    logo,
+    rating,
+  } = tech;
 
   const isAdded = stack.some((t) => t.id === id);
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 p-6 flex flex-col justify-between text-left">
+      {/* Logo & Badge */}
       <div className="flex items-center justify-between mb-3">
-        <img src={logo} alt={name} className="w-10 h-10 object-contain" />
+        <img
+          src={logo}
+          alt={name}
+          className="w-10 h-10 object-contain"
+        />
 
         <span className="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-700">
           {badge}
         </span>
       </div>
 
+      {/* Name */}
       <h2 className="text-lg font-semibold text-gray-800">
         {name}
       </h2>
 
+      {/* Description */}
       <p className="text-sm text-gray-500 mt-1">
         {description}
       </p>
 
+      {/* Category, Level & Rating */}
       <div className="flex items-center justify-between mt-3">
         <div className="flex gap-2">
           <span className="px-2 py-1 text-xs rounded-full bg-blue-50 text-blue-700">
@@ -35,12 +52,17 @@ const TechnologyCard = ({ tech, onAdd, stack = [] }) => {
           </span>
         </div>
 
-        <div className="flex items-center text-yellow-500 text-sm font-medium">
-          <FaStar className="mr-1" />
+        <div className="flex items-center text-sm font-medium text-yellow-500">
+          <FaStar
+            size={16}
+            color="#eab308"
+            className="mr-1"
+          />
           {rating}
         </div>
       </div>
 
+      {/* Add Button */}
       {isAdded ? (
         <button
           disabled
