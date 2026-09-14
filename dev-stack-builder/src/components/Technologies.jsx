@@ -1,5 +1,5 @@
 import TechnologyCard from "./TechnologyCard";
-import technologies from "../data/technologies.json";
+import technologies from "../data/technologies";
 
 const Technologies = ({ onAdd, stack = [] }) => {
   return (
